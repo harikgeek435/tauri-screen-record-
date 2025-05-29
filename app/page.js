@@ -7,6 +7,7 @@ export default function Page() {
   const output = 'C:/Users/Public/recorded.mp4'
 
   const start = async () => {
+    
     try {
       await invokeSafe('start_recording', { output })
       setRecording(true)
@@ -15,14 +16,17 @@ export default function Page() {
     }
   }
 
-  const stop = async () => {
-    try {
-      await invokeSafe('stop_recording')
-      setRecording(false)
-    } catch (err) {
-      console.error('Stop failed', err)
-    }
+const stop = async () => {
+  console.log("Stopping...");
+  try {
+    await invokeSafe('stop_recording');
+    setRecording(false);
+    console.log("Stopped!");
+  } catch (err) {
+    console.error('Stop failed', err);
   }
+};
+
 
   return (
     <main style={{ padding: 20 }}>
